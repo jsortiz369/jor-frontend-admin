@@ -820,11 +820,11 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
 }
 
 .sidebar-wrapper {
+  width: 255px;
+  position: fixed;
   top: 5px;
   left: 8px;
   border: 1px solid #e0e6ed;
-  width: 255px;
-  position: fixed;
   z-index: 1030;
   transition: width 0.6s;
   height: calc(100vh - 15px);
@@ -833,6 +833,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   box-shadow: 5px 0 25px 0 rgba(94, 92, 154, 0.06);
+  border-radius: 8px;
 }
 
 .shadow-bottom {
@@ -1076,7 +1077,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
 }
 
 .sidebar-closed #sidebar ul.menu-categories li.menu > .dropdown-toggle {
-  padding: 10px 20px;
+  padding: 10px 15px;
   transition: 0.6s;
   position: relative;
 }
@@ -1109,12 +1110,12 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   cursor: pointer;
   font-size: 15px;
   color: #191e3a;
-  padding: 10px 5px;
+  padding: 10.2px 16px;
   font-weight: 400;
   transition: 0.6s;
   letter-spacing: 1px;
   margin-bottom: 2px;
-  margin: 0 10px 0 10px;
+  margin: 0 16px 0 16px;
   border-radius: 8px;
   margin-top: 2px;
 }
@@ -1139,7 +1140,6 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
 
 #sidebar ul.menu-categories li.menu > .dropdown-toggle > div {
   align-self: center;
-  display: ruby;
 }
 
 #sidebar ul.menu-categories li.menu > .dropdown-toggle > div span.sidebar-label {
@@ -1518,12 +1518,17 @@ body.alt-menu #content {
     padding: 8px !important;
   }
 
-  #content div:last-child {
-    display: none;
-  }
-
   .sidebar-wrapper {
     height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    border-radius: 0;
+    left: 0;
   }
 
   /*
