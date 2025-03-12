@@ -764,7 +764,7 @@ body .navbar .dark-mode, body:not(.dark) .navbar .dark-mode {
   align-self: center;
   opacity: 1;
   transition: opacity 0.5s;
-  width: 135px;
+  width: 100%;
 }
 
 .sidebar-wrapper .profile-info .user-info .profile-content h6 {
