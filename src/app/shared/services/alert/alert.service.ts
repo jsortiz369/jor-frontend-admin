@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Confirm } from '../../interfaces/alert.interface';
 import { confirmSchema } from '../../schemes/alert.scheme';
 
@@ -8,6 +8,7 @@ import { confirmSchema } from '../../schemes/alert.scheme';
 })
 export class AlertService {
   private readonly _confirmationService$ = inject(ConfirmationService);
+  private readonly _messageService$ = inject(MessageService);
 
   constructor() {}
 
@@ -16,6 +17,11 @@ export class AlertService {
     this.isConfirm(data);
 
     this._confirmationService$.confirm({ ...data });
+  }
+
+  clearToast(key: string) {
+    if (typeof key !== 'string') throw new Error('clearToast only accepts string value');
+    this._messageService$.clear(key);
   }
 
   private isConfirm(data: Confirm) {

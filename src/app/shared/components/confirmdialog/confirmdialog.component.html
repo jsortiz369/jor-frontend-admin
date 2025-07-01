@@ -1,0 +1,53 @@
+<p-confirmdialog #cd>
+    <ng-template #headless let-message let-onAccept="onAccept" let-onReject="onReject">
+        <div class="flex flex-col items-center pl-8 pt-8 pr-8 pb-4 bg-surface-0 dark:bg-surface-900 rounded-3xl">
+            @if(message.icon) {
+                <div class="rounded-full bg-primary text-primary-contrast inline-flex justify-center items-center h-24 w-24 -mt-20">
+                    <i [ngClass]="message.icon" class="!text-5xl"></i>
+                </div>
+            }
+
+            @if(message.header) {
+                <span class="font-bold text-2xl block mb-2 mt-6">{{ message.header }}</span>
+            }
+
+            <p class="mb-0 max-w-[350px] text-center break-words" [innerHTML]="message.message"></p>
+            
+            @if(message.rejectVisible || message.acceptVisible) {
+                <div class="flex items-center gap-2 mt-6">
+                    @if(message.rejectVisible) {
+                        <p-button 
+                            [label]="message?.rejectButtonProps?.label"
+                            [severity]="message?.rejectButtonProps?.severity ?? 'secondary'"
+                            [icon]="message?.rejectButtonProps?.icon"
+                            [size]="message?.rejectButtonProps?.size"
+                            [outlined]="message?.rejectButtonProps?.outlined"
+                            [iconPos]="message?.rejectButtonProps?.iconPos"
+                            [text]="message?.rejectButtonProps?.text"
+                            [variant]="message?.rejectButtonProps?.variant"
+                            [raised]="message?.rejectButtonProps?.raised"
+                            [styleClass]="message?.rejectButtonProps?.styleClass"
+                            (onClick)="onReject()"
+                        />
+                    }
+    
+                    @if(message.acceptVisible){
+                        <p-button 
+                            [label]="message?.acceptButtonProps?.label ?? 'Acept'"
+                            [severity]="message?.acceptButtonProps?.severity ?? 'primary'"
+                            [icon]="message?.acceptButtonProps?.icon"
+                            [iconPos]="message?.acceptButtonProps?.iconPos"
+                            [size]="message?.acceptButtonProps?.size"
+                            [outlined]="message?.acceptButtonProps?.outlined"
+                            [text]="message?.acceptButtonProps?.text"
+                            [variant]="message?.acceptButtonProps?.variant"
+                            [raised]="message?.acceptButtonProps?.raised"
+                            [styleClass]="message?.acceptButtonProps?.styleClass"
+                            (onClick)="onAccept()"
+                        />
+                    }
+                </div>
+            }
+        </div>
+    </ng-template>
+</p-confirmdialog>

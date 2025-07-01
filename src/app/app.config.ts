@@ -6,7 +6,7 @@ import Aura from '@primeng/themes/aura';
 import { providePrimeNG } from 'primeng/config';
 
 import { routes } from './app.routes';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,5 +26,6 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     ConfirmationService,
+    MessageService,
   ],
 };
