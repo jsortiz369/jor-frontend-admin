@@ -7,6 +7,5 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
   selector: 'app-confirmdialog',
   imports: [CommonModule, ConfirmDialog, ButtonModule],
   templateUrl: './confirmdialog.component.html',
-  styles: ``,
 })
 export class ConfirmdialogComponent {}

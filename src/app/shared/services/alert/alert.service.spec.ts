@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 import { AlertService } from './alert.service';
 import { Confirm } from '../../interfaces/alert.interface';
@@ -12,7 +12,7 @@ describe('AlertService', () => {
     const confirmationSpy = jasmine.createSpyObj('ConfirmationService', ['confirm']);
 
     TestBed.configureTestingModule({
-      providers: [AlertService, MessageService, { provide: ConfirmationService, useValue: confirmationSpy }],
+      providers: [AlertService, { provide: ConfirmationService, useValue: confirmationSpy }],
     });
     service = TestBed.inject(AlertService);
     confirmationService = TestBed.inject(ConfirmationService) as jasmine.SpyObj<ConfirmationService>;

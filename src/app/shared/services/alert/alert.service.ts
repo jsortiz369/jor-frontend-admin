@@ -8,7 +8,7 @@ import { confirmSchema } from '../../schemes/alert.scheme';
 })
 export class AlertService {
   private readonly _confirmationService$ = inject(ConfirmationService);
-  private readonly _messageService$ = inject(MessageService);
+  // private readonly _messageService$ = inject(MessageService);
 
   constructor() {}
 
@@ -19,10 +19,10 @@ export class AlertService {
     this._confirmationService$.confirm({ ...data });
   }
 
-  clearToast(key: string) {
+  /* clearToast(key: string) {
     if (typeof key !== 'string') throw new Error('clearToast only accepts string value');
     this._messageService$.clear(key);
-  }
+  } */
 
   private isConfirm(data: Confirm) {
     if (typeof data !== 'object' || data == null) throw new Error('The parameter sent is not of type Confirm');
