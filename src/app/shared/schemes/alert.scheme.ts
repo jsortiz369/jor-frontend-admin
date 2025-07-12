@@ -57,19 +57,3 @@ export const confirmSchema = z
   .strict({
     message: 'Additional fields are not allowed. Check the keys sent',
   });
-
-//acceptLabel: z.string().optional(),
-//rejectLabel: z.string().optional(),
-//acceptIcon: z.string().optional(),
-//rejectIcon: z.string().optional(),
-//blockScroll: z.boolean().optional(),
-//closeOnEscape: z.boolean().optional(),
-//dismissableMask: z.boolean().optional(),
-//defaultFocus: z.string().optional(),
-//acceptButtonStyleClass: z.string().optional(),
-//rejectButtonStyleClass: z.string().optional(),
-//target: z.instanceof(EventTarget).optional(),
-//rejectEvent?: EventEmitter<any>;
-// closeButtonProps?: any;
-// closable?: boolean;
-// position?: string;
