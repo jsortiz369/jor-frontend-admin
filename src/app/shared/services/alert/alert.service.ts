@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { Confirm } from '../../interfaces/alert.interface';
 import { confirmSchema } from '../../schemes/alert.scheme';
 

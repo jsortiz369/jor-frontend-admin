@@ -9,7 +9,7 @@ export default [
   {
     path: 'roles',
     title: 'Admin - Roles',
-    loadComponent: () => import('./roles/roles.component').then((m) => m.RolesComponent),
+    loadChildren: () => import('./roles/features/roles.routes'),
   },
   {
     path: '**',
