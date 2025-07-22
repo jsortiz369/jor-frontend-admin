@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { limitScheme, metaScheme, pageScheme, searchScheme, sortOrderScheme } from '../../../shared/schemes';
+import { limitScheme, metaScheme, pageScheme, searchScheme, sortOrderScheme } from '../../../core/schemes';
 
 export const roleParamDataTableScheme = z.object({
   sort: z

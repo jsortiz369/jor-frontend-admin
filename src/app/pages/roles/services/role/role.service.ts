@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, map, Observable, switchMap, throwError, timer } from 'rxjs';
 
 import { environment } from '../../../../../environments/environment.development';
-import { RoleAllReponse, RoleParamDataTable } from '../../interfaces/role.interface';
+import { Role, RoleAllReponse, RoleParamDataTable } from '../../interfaces/role.interface';
 import { roleAllResponseScheme, roleParamDataTableScheme } from '../../shemes/role.scheme';
 
 @Injectable({
@@ -15,6 +15,8 @@ export class RoleService {
   private readonly _time$ = environment.timeRequest;
 
   constructor() {}
+
+  readonly _selectRole = signal<Role | undefined>(undefined);
 
   findAllByLazy(filter: RoleParamDataTable): Observable<RoleAllReponse> {
     const filterValidate = this.validatefindAllByLazyScheme(filter); // validate the scheme complies

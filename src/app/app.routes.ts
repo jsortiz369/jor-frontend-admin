@@ -9,7 +9,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadComponent: () => import('./layout/admin/admin.component').then((m) => m.AdminComponent),
-    loadChildren: () => import('./modules/modues.routes'),
+    loadChildren: () => import('./pages/modues.routes'),
   },
   {
     path: '**',

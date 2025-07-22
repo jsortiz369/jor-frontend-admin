@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { Confirm } from '../../interfaces/alert.interface';
+import { Confirm } from '../../models/interfaces/alert.interface';
 import { confirmSchema } from '../../schemes/alert.scheme';
 
 @Injectable({

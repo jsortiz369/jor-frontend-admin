@@ -1,0 +1,118 @@
+<p-breadcrumb [model]="itemsBreadCrumb()" [home]="home()" styleClass="bg-[transparent]"/>
+
+<p-toolbar styleClass="mb-1">
+    <ng-template #start>
+        <p-button severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="onDeleteSelectedRoles()" [disabled]="!selectedRoles() || !selectedRoles().length" />
+    </ng-template>
+
+    <ng-template #end>
+        <p-button label="New" icon="pi pi-plus" severity="primary" size="small" class="mr-2" />
+    </ng-template>
+</p-toolbar>
+
+<p-panel header="Manage Roles" [toggleable]="true">
+    <p-table
+        #dt
+        [lazy]="true"
+        [totalRecords]="roleTable().total"
+        [value]="roleTable().data"
+        [rows]="roleTable().rows"
+        [loading]="roleTable().loading"
+        [(selection)]="selectedRoles"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [paginator]="true"
+        [lazyLoadOnInit]="true"
+        [sortOrder]="-1"
+        sortMode="single"
+        selectionMode="single"
+        sortField="createdAt"
+        size="small"
+        (onLazyLoad)="onLazyRoles($event)"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
+        [rowHover]="true"
+        [tableStyle]="{ 'min-width': '100%' }"
+        dataKey="_id"
+        [showCurrentPageReport]="true"
+        showGridlines
+        scrollHeight="calc(100dvh - 24.5rem)"
+        [scrollable]="true"
+        stripedRows 
+    >
+        <ng-template #caption>
+            <div class="flex items-center justify-between">
+                <h5 class="m-0"></h5>
+                <p-floatlabel variant="on">
+                    <p-iconfield>
+                        <p-inputicon class="pi pi-search" />
+                        <input pInputText id="on_search" autocomplete="off" name="on_search" (input)="onGlobalFilter(dt, $event)" pSize="small"/>
+                    </p-iconfield>
+                    <label for="on_search">Search</label>
+                </p-floatlabel>
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+                <th class="w-[180px] min-w-[180px] max-w-[180px]" pSortableColumn="name" >
+                    Name
+                    <p-sortIcon field="name" />
+                </th>
+                <th class="w-[250px] min-w-[250px] max-w-[250px]"> Description </th>
+                <th class="w-[100px] min-w-[100px] max-w-[100px]" pSortableColumn="status">
+                    Status
+                    <p-sortIcon field="status" />
+                </th>
+                <th class="w-[150px] min-w-[150px] max-w-[150px]" pSortableColumn="createdAt">
+                    Created
+                    <p-sortIcon field="createdAt" />
+                </th>
+                <th class="w-[150px] min-w-[150px] max-w-[150px]"> Updated </th>
+                <th class="w-[130px] min-w-[130px] max-w-[130px] !text-center">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template #body let-roleRow let-rowIndex="rowIndex">
+            <tr >
+                <td>
+                    <p-tableCheckbox [value]="roleRow" />
+                </td>
+                <td class="w-[180px] min-w-[180px] max-w-[180px] break-words">{{ roleRow.name }}</td>
+                <td class="w-[250px] min-w-[250px] max-w-[250px]">
+                    <textarea 
+                        class="w-full h-[40px] min-h-[40px] max-h-[80px]" 
+                        pTextarea 
+                        [disabled]="true" 
+                        pSize="small"
+                        [pTooltip]="roleRow.description"
+                        tooltipPosition="top"
+                    >{{ roleRow.description }}</textarea>
+                </td>
+                <td class="w-[100px] min-w-[100px] max-w-[100px] !text-center">
+                    <p-tag [value]="roleRow.status == '1'? 'ACTIVE':'INACTIVE'" [severity]="roleRow.status == '1'? 'success':'danger'" [icon]="roleRow.status == '1' ? 'pi pi-check' : 'pi pi-times'"/>
+                </td>
+                <td class="w-[150px] min-w-[150px] max-w-[150px]">{{ roleRow.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td class="w-[150px] min-w-[150px] max-w-[150px]">{{ roleRow.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td class="w-[130px] min-w-[130px] max-w-[130px] !text-center">
+                    <div class="w-full">
+                        <p-splitbutton
+                            icon="pi pi-user-edit"
+                            [buttonDisabled]="roleRow._id == _roleAdmin"
+                            size="small"
+                            label="update"
+                            [raised]="true" 
+                            appendTo="body"
+                            dir="ltr"
+                            [model]="[]"
+                        />
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+            <tr>
+                <td class="!text-center" colspan="6">No roles found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
