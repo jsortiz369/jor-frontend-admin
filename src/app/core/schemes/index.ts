@@ -14,3 +14,10 @@ export const metaScheme = z.object({
   lastPage: z.number({ invalid_type_error: 'lastPage type number' }).min(1, { message: 'lastPage min is 1' }),
   filter: z.number({ invalid_type_error: 'filter type number' }).min(1, { message: 'filter min is 1' }).optional(),
 });
+
+export const filtersScheme = z.object({
+  value: z.any(),
+  matchMode: z.enum(['startsWith', 'contains'], {
+    errorMap: () => ({ message: `contains` }),
+  }),
+});

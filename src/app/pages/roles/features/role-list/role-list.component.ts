@@ -67,7 +67,7 @@ export class RoleListComponent implements OnInit {
       limit: rows,
       page: Math.ceil((event?.first ?? 0) / rows) + 1,
       sortOrder: event?.sortOrder == 1 ? 'ASC' : 'DESC',
-      search: event?.globalFilter == null ? '' : (event?.globalFilter as string),
+      filters: event?.filters as Pick<RoleParamDataTable, 'filters'>['filters'],
     };
 
     this._roleService$.findAllByLazy(dataFilter).subscribe({

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { limitScheme, metaScheme, pageScheme, searchScheme, sortOrderScheme } from '../../../core/schemes';
+import { filtersScheme, limitScheme, metaScheme, pageScheme, sortOrderScheme } from '../../../core/schemes';
 
 export const roleParamDataTableScheme = z.object({
   sort: z
@@ -10,7 +10,11 @@ export const roleParamDataTableScheme = z.object({
   sortOrder: sortOrderScheme.default('ASC').optional(),
   page: pageScheme.default(1).optional(),
   limit: limitScheme.default(10).optional(),
-  search: searchScheme.optional(),
+  filters: z
+    .object({
+      global: filtersScheme.optional(),
+    })
+    .optional(),
 });
 
 export const roleResponseScheme = z.object({

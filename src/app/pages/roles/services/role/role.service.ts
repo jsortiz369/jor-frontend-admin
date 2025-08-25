@@ -20,8 +20,10 @@ export class RoleService {
 
   findAllByLazy(filter: RoleParamDataTable): Observable<RoleAllReponse> {
     const filterValidate = this.validatefindAllByLazyScheme(filter); // validate the scheme complies
+    const { filters, ...restFilter } = filterValidate;
+    const filtersString = JSON.stringify(filters);
 
-    return this._http$.get<RoleAllReponse>(this._url$, { params: filterValidate, observe: 'body' }).pipe(
+    return this._http$.get<RoleAllReponse>(this._url$, { params: { ...restFilter, filters: filtersString } }).pipe(
       map((res: RoleAllReponse) => roleAllResponseScheme.parse(res)),
       catchError((err: HttpErrorResponse) => timer(this._time$).pipe(switchMap(() => throwError(() => err)))),
     );
