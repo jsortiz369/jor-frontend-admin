@@ -12,12 +12,12 @@ export const metaScheme = z.object({
   total: z.number({ invalid_type_error: 'total type number' }).min(1, { message: 'total min is 1' }),
   page: pageScheme,
   lastPage: z.number({ invalid_type_error: 'lastPage type number' }).min(1, { message: 'lastPage min is 1' }),
-  filter: z.number({ invalid_type_error: 'filter type number' }).min(1, { message: 'filter min is 1' }).optional(),
+  filter: z.number({ invalid_type_error: 'filter type number' }).min(0, { message: 'filter min is 1' }).optional(),
 });
 
 export const filtersScheme = z.object({
   value: z.any(),
-  matchMode: z.enum(['startsWith', 'contains'], {
-    errorMap: () => ({ message: `contains` }),
+  matchMode: z.enum(['startsWith', 'contains', 'notContains', 'endsWith', 'equals', 'notEquals'], {
+    errorMap: () => ({ message: `'startsWith' | 'contains' | 'notContains' | 'endsWith' | 'equals' | 'notEquals'` }),
   }),
 });

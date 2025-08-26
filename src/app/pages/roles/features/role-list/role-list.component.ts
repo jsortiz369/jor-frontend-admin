@@ -76,6 +76,7 @@ export class RoleListComponent implements OnInit {
         this.roleTable.update(() => ({ rows, total, loading: false, data: data, event }));
       },
       error: (error: HttpErrorResponse) => {
+        //console.log(error);
         this.roleTable.update((last) => ({ ...last, loading: false }));
         //this._alertService$.clearToast('');
         //this._alertService$.toast({ severity: 'warn', summary: 'Warn', detail: `the list of roles could not be obtained` });
@@ -84,7 +85,7 @@ export class RoleListComponent implements OnInit {
   }
 
   onGlobalFilter(table: Table, event: Event) {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target as HTMLInputElement).value.trim();
     table.filterGlobal(value, 'contains');
   }
 
