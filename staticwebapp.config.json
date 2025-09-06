@@ -14,8 +14,15 @@
   },
   "routes": [
     {
-      "route": "/admin/*",
-      "allowedRoles": ["administrator"]
+      "route": "/",
+      "methods": [
+        "get",
+        "head",
+        "post",
+        "put",
+        "delete",
+        "patch"
+      ]
     }
   ],
   "auth": {
