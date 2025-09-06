@@ -1,0 +1,31 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "/assets/*",
+      "/*.{css,js,png,jpg,gif,ico,json,svg,woff2}"
+    ]
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/index.html",
+      "statusCode": 200
+    }
+  },
+  "routes": [
+    {
+      "route": "/admin/*",
+      "allowedRoles": ["administrator"]
+    }
+  ],
+  "auth": {
+    "identityProviders": {
+      "github": {
+        "registration": {
+          "clientIdSettingName": "GITHUB_CLIENT_ID",
+          "clientSecretSettingName": "GITHUB_CLIENT_SECRET"
+        }
+      }
+    }
+  }
+}

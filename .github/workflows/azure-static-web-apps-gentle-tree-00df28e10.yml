@@ -29,6 +29,9 @@ jobs:
       - name: Build Angular app
         run: yarn build --configuration production
 
+      - name: Copy Azure Static Web Apps config
+        run: cp staticwebapp.config.json dist/jor-frontend-admin/browser/
+
       - name: Install OIDC Client from Core Package
         run: yarn add -D @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
